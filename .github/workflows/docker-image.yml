@@ -1,0 +1,21 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub with Token
+        run: echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u maelcas --password-stdin
+
+      - name: Build and Push Docker Image
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/my-python-app:latest .
+          docker push maelcas/my-python-app:latest
