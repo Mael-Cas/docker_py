@@ -17,5 +17,5 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/my-python-app:latest .
+          docker build -t maelcas/my-python-app:latest .
           docker push maelcas/my-python-app:latest
